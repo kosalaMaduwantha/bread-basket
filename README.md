@@ -19,8 +19,6 @@ A comprehensive web-based dashboard for visualizing and analyzing customer purch
 - [Deployment](#deployment)
 - [Technical Implementation](#technical-implementation)
 - [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## 🎯 Overview
 
