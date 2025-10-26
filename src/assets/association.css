@@ -1,0 +1,76 @@
+.navBar {
+  height: 4.5rem;
+
+
+}
+.f-card {
+  width: 80.4rem;
+  position: relative;
+  right: 4rem;
+  border-top-color: #3d3d3d;
+  border-top-width: 2px;
+}
+
+.card-header-k {
+  background: #dcdcdc;
+}
+.card-header-k-2 {
+  background: #dcdcdc;
+}
+
+.card-k {
+  border-color: #dcdcdc;
+}
+.card-k-2 {
+  border-color: #dcdcdc;
+  height: 50vh;
+  width: 59.5rem;
+  position: relative;
+  right: 1.1rem;
+}
+
+.card-col-k {
+  border-left-color: #796b56;
+  border-left-width: 4px;
+}
+
+.card-col-k-2 {
+  border-left-color: #796b56;
+  border-left-width: 4px;
+  border-bottom-color: #796b56;
+  border-bottom-width: 4px;
+  height: 50vh;
+}
+
+.main-topic {
+  position: relative;
+  right: 10vh;
+  
+}
+.main-topic-color{
+  color: #796b56;
+ 
+}
+
+
+.main-row {
+  width: 80.4rem;
+  position: relative;
+  right: 4rem;
+}
+
+.card-col-main-row {
+  border-top-color: #796b56;
+  border-top-width: 5px;
+}
+
+
+
+.main-topic-color-brown{
+  color: #796b56;
+}
+
+
+.font-jini{
+  font-family:'Calibri';
+}

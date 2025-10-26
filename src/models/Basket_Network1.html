@@ -1,0 +1,117 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 1000px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "Cake", "label": "Cake", "shape": "dot", "title": "Cake\u003cbr\u003eSupport: 0.10385631273111463", "value": 0.10385631273111463}, {"id": "Tea", "label": "Tea", "shape": "dot", "title": "Tea\u003cbr\u003eSupport: 0.14263074484944532", "value": 0.14263074484944532}, {"id": "Toast", "label": "Toast", "shape": "dot", "title": "Toast\u003cbr\u003eSupport: 0.03359746434231379", "value": 0.03359746434231379}, {"id": "Coffee", "label": "Coffee", "shape": "dot", "title": "Coffee\u003cbr\u003eSupport: 0.47839408346539886", "value": 0.47839408346539886}, {"id": "Medialuna", "label": "Medialuna", "shape": "dot", "title": "Medialuna\u003cbr\u003eSupport: 0.061806656101426306", "value": 0.061806656101426306}, {"id": "Pastry", "label": "Pastry", "shape": "dot", "title": "Pastry\u003cbr\u003eSupport: 0.0861067089276281", "value": 0.0861067089276281}, {"id": "Juice", "label": "Juice", "shape": "dot", "title": "Juice\u003cbr\u003eSupport: 0.03856312731114633", "value": 0.03856312731114633}, {"id": "Sandwich", "label": "Sandwich", "shape": "dot", "title": "Sandwich\u003cbr\u003eSupport: 0.07184363444268357", "value": 0.07184363444268357}, {"id": "Cookies", "label": "Cookies", "shape": "dot", "title": "Cookies\u003cbr\u003eSupport: 0.054410987849973586", "value": 0.054410987849973586}, {"id": "Hot chocolate", "label": "Hot chocolate", "shape": "dot", "title": "Hot chocolate\u003cbr\u003eSupport: 0.05832012678288431", "value": 0.05832012678288431}, {"id": "Bread", "label": "Bread", "shape": "dot", "title": "Bread\u003cbr\u003eSupport: 0.32720549392498677", "value": 0.32720549392498677}]);
+        edges = new vis.DataSet([{"arrowStrikethrough": false, "arrows": "to", "from": "Cake", "title": "Cake --\u003e Tea\u003cbr\u003eConfidence:0.2288911495422177", "to": "Tea", "value": 0.2288911495422177}, {"arrowStrikethrough": false, "arrows": "to", "from": "Toast", "title": "Toast --\u003e Coffee\u003cbr\u003eConfidence:0.7044025157232704", "to": "Coffee", "value": 0.7044025157232704}, {"arrowStrikethrough": false, "arrows": "to", "from": "Medialuna", "title": "Medialuna --\u003e Coffee\u003cbr\u003eConfidence:0.5692307692307692", "to": "Coffee", "value": 0.5692307692307692}, {"arrowStrikethrough": false, "arrows": "to", "from": "Pastry", "title": "Pastry --\u003e Coffee\u003cbr\u003eConfidence:0.5521472392638037", "to": "Coffee", "value": 0.5521472392638037}, {"arrowStrikethrough": false, "arrows": "to", "from": "Juice", "title": "Juice --\u003e Coffee\u003cbr\u003eConfidence:0.5342465753424658", "to": "Coffee", "value": 0.5342465753424658}, {"arrowStrikethrough": false, "arrows": "to", "from": "Sandwich", "title": "Sandwich --\u003e Coffee\u003cbr\u003eConfidence:0.5323529411764706", "to": "Coffee", "value": 0.5323529411764706}, {"arrowStrikethrough": false, "arrows": "to", "from": "Cake", "title": "Cake --\u003e Coffee\u003cbr\u003eConfidence:0.5269582909460835", "to": "Coffee", "value": 0.5269582909460835}, {"arrowStrikethrough": false, "arrows": "to", "from": "Cookies", "title": "Cookies --\u003e Coffee\u003cbr\u003eConfidence:0.5184466019417476", "to": "Coffee", "value": 0.5184466019417476}, {"arrowStrikethrough": false, "arrows": "to", "from": "Hot chocolate", "title": "Hot chocolate --\u003e Coffee\u003cbr\u003eConfidence:0.5072463768115942", "to": "Coffee", "value": 0.5072463768115942}, {"arrowStrikethrough": false, "arrows": "to", "from": "Pastry", "title": "Pastry --\u003e Bread\u003cbr\u003eConfidence:0.33865030674846625", "to": "Bread", "value": 0.33865030674846625}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": true,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -50,
+            "springConstant": 0.08,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
